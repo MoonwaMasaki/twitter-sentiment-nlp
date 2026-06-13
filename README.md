@@ -28,11 +28,12 @@ To build and evaluate the sentiment classifier, the following NLP and machine le
 - **Text preprocessing** with Python's `re` library — removing URLs, @mentions, hashtags, punctuation, and digits
 - **Stopword removal** and **lemmatization** using NLTK's English stopword list and `WordNetLemmatizer`
 - **Bag-of-words vectorization** using scikit-learn's `CountVectorizer` (baseline)
-- **TF-IDF vectorization** with unigrams and bigrams using scikit-learn's `TfidfVectorizer`
+- **TF-IDF vectorization** with unigrams and bigrams using scikit-learn's `TfidfVectorizer`- **Feature engineering** with hand-crafted numeric features (tweet length, word count, exclamation count, question count, caps ratio, emoji proxy) extracted from raw tweet text using a custom scikit-learn `TransformerMixin`
 - **Multinomial Naive Bayes** as a baseline classifier
 - **Logistic Regression** with balanced class weights for class imbalance handling
 - **Linear Support Vector Classification (LinearSVC)** — the strongest performer for high-dimensional text data
 - **Hyperparameter tuning** via `GridSearchCV` with 5-fold stratified cross-validation
+- **FeatureUnion** combining TF-IDF vectors and hand-crafted features into a single feature matrix for Model 5
 - **Model explainability** via LinearSVC coefficient inspection to surface the most predictive words per sentiment class
 - **Macro F1-score** as the primary evaluation metric, chosen due to class imbalance
 
@@ -45,7 +46,7 @@ The project is structured as a single end-to-end Jupyter Notebook with the follo
 1. **Business Understanding** — Defining the stakeholder, the problem, and how the model will be used
 2. **Data Understanding** — Exploring the dataset, inspecting class distribution, and identifying limitations
 3. **Data Preparation** — Cleaning tweet text, mapping sentiment labels, removing stopwords, lemmatizing, and vectorizing
-4. **Modeling** — Building four models iteratively, from a Naive Bayes baseline to a tuned LinearSVC, on both binary and multiclass tasks
+4. **Modeling** — Building five models iteratively, from a Naive Bayes baseline to a tuned LinearSVC, on both binary and multiclass tasks
 5. **Model Comparison** — Evaluating and comparing all models on the held-out test set using macro F1
 6. **Final Model Evaluation** — Confusion matrix, classification report, and LinearSVC coefficient-based explainability
 7. **Conclusion** — Results summary, limitations, and recommendations for next steps
